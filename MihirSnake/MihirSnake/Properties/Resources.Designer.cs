@@ -73,6 +73,16 @@ namespace MihirSnake.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap background_desert_design_elements_vector_585961 {
+            get {
+                object obj = ResourceManager.GetObject("background_desert_design_elements_vector_585961", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap junglebackground {
             get {
                 object obj = ResourceManager.GetObject("junglebackground", resourceCulture);

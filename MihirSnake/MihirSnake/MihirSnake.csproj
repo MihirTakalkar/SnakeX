@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Food.cs" />
     <Compile Include="Play.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\junglebackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background_desert_design_elements_vector_585961.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

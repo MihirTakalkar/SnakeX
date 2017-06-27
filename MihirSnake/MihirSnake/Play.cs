@@ -24,7 +24,7 @@ namespace MihirSnake
         public Play()
         {
             InitializeComponent();
-            head = new Snake(10, 10, 10, 10);
+            head = new Snake(20, 20, 20, 20);
             bitmap = new Bitmap(backgroundImage.Width, backgroundImage.Height);
             gfx = Graphics.FromImage(bitmap);
             SnakeMove_Tick(null, EventArgs.Empty);
@@ -32,7 +32,7 @@ namespace MihirSnake
 
         private void SnakeMove_Tick(object sender, EventArgs e)
         {
-            gfx.DrawImage(Properties.Resources.junglebackground, new Rectangle(0,0, ClientSize.Width, ClientSize.Height));
+            gfx.DrawImage(Properties.Resources.background_desert_design_elements_vector_585961, new Rectangle(0,0, ClientSize.Width, ClientSize.Height));
 
             head.Update();
             head.Draw(gfx);
@@ -50,5 +50,7 @@ namespace MihirSnake
         {
             head.SetDirection(e);
         }
+
+   
     }
 }

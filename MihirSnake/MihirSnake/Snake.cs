@@ -55,29 +55,31 @@ namespace MihirSnake
             {
                 squarex = squarex + width;
             }
+
         }
         public void Draw(Graphics gfx)
         {
-            gfx.FillRectangle(Brushes.Black, squarex, squarey, height, width);
+            gfx.FillRectangle(Brushes.Blue, squarex, squarey, height, width);
         }
 
         public void SetDirection(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Up && direction != Direction.Down)
             {
                 direction = Direction.Up;
             }
-
-            if (e.KeyCode == Keys.Down)
+            
+            
+            if (e.KeyCode == Keys.Down && direction != Direction.Up)
             {
                 direction = Direction.Down;
             }
 
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left && direction != Direction.Right)
             {
                 direction = Direction.Left;
             }
-            if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right && direction != Direction.Left)
             {
                 direction = Direction.Right;
             }
