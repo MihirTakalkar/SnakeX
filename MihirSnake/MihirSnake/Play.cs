@@ -16,10 +16,11 @@ namespace MihirSnake
         //Snake (represents 1 peice of the snake)
         //Food
         //get a square on the screen and move it around 
-
+        Random random = new Random();
         Snake head;
         Bitmap bitmap;
         Graphics gfx;
+        Food food;
 
         public Play()
         {
@@ -27,23 +28,33 @@ namespace MihirSnake
             head = new Snake(20, 20, 20, 20);
             bitmap = new Bitmap(backgroundImage.Width, backgroundImage.Height);
             gfx = Graphics.FromImage(bitmap);
-            SnakeMove_Tick(null, EventArgs.Empty);
+            food = new Food(random.Next(0, ClientSize.Width - 20), random.Next(0, ClientSize.Height - 20), 20, 20);
+
+            SnakeMove.Enabled = true;
+
         }
 
         private void SnakeMove_Tick(object sender, EventArgs e)
         {
-            gfx.DrawImage(Properties.Resources.background_desert_design_elements_vector_585961, new Rectangle(0,0, ClientSize.Width, ClientSize.Height));
+            //erase
+            gfx.DrawImage(Properties.Resources.background_desert_design_elements_vector_585961, new Rectangle(0, 0, ClientSize.Width, ClientSize.Height));
 
+            //update
+            food.Update();
             head.Update();
-            head.Draw(gfx);
-            
-            backgroundImage.Image = bitmap;
 
             if (head.Offscreen(ClientSize.Width, ClientSize.Height) == true)
             {
                 SnakeMove.Stop();
                 MessageBox.Show("You Lose!");
             }
+
+
+            //draw
+            head.Draw(gfx);
+            food.Draw(gfx);
+
+            backgroundImage.Image = bitmap;
         }
 
         private void Play_KeyDown(object sender, KeyEventArgs e)
@@ -51,6 +62,6 @@ namespace MihirSnake
             head.SetDirection(e);
         }
 
-   
+
     }
 }

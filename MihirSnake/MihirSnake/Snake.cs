@@ -14,6 +14,7 @@ namespace MihirSnake
         public int squarey;
         public int height;
         public int width;
+        public Rectangle hitbox;
 
         enum Direction
         {
@@ -33,6 +34,7 @@ namespace MihirSnake
             this.height = height;
             this.width = width;
             direction = Direction.Stopped;
+            
         }
         public void Update()
         {
@@ -56,10 +58,15 @@ namespace MihirSnake
                 squarex = squarex + width;
             }
 
+            hitbox.X = squarex;
+            hitbox.Y = squarey;
+            hitbox.Width = 20;
+            hitbox.Height = 20;
         }
         public void Draw(Graphics gfx)
-        {
-            gfx.FillRectangle(Brushes.Blue, squarex, squarey, height, width);
+        {   
+            gfx.FillEllipse(Brushes.Blue, squarex, squarey, height, width);
+            gfx.DrawRectangle(Pens.Red, hitbox);
         }
 
         public void SetDirection(KeyEventArgs e)
