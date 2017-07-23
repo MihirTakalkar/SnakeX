@@ -1,0 +1,27 @@
+bash:
+pwd
+cd
+cd /
+cd ~
+cd ..
+ls
+ls -a
+clear
+mkdir
+touch
+rm
+rm -r
+
+git:
+git status
+git add .
+git commit -m "message"
+git push
+git push origin master
+
+git clone https://...
+git init
+git remote add origin https://github.com/user/repo.git
+git config --local user.name "Name"
+git config --local user.email "email@com"
+^ same thing with global

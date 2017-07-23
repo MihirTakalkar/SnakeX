@@ -25,10 +25,12 @@ namespace MihirSnake
             Right
         }
 
-        Direction direction;
+ 
+        public Direction direction;
 
         public Snake(int squarex, int squarey, int height, int width)
         {
+           
             this.squarex = squarex;
             this.squarey = squarey;
             this.height = height;
@@ -36,6 +38,7 @@ namespace MihirSnake
             direction = Direction.Stopped;
             
         }
+
         public void Update()
         {
             if (direction == Direction.Up)

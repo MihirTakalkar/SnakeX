@@ -26,6 +26,7 @@ namespace MihirSnake
         {
             InitializeComponent();
             head = new Snake(20, 20, 20, 20);
+            firstpiece = new Snake(20, 20, 20, 20)
             bitmap = new Bitmap(backgroundImage.Width, backgroundImage.Height);
             gfx = Graphics.FromImage(bitmap);
             food = new Food(random.Next(0, ClientSize.Width - 20), random.Next(0, ClientSize.Height - 20), 20, 20);
@@ -42,6 +43,11 @@ namespace MihirSnake
             //update
             food.Update();
             head.Update();
+
+            //if(head.hitbox.IntersectsWith(food.hitbox))
+            //{
+                
+            //}
 
             if (head.Offscreen(ClientSize.Width, ClientSize.Height) == true)
             {

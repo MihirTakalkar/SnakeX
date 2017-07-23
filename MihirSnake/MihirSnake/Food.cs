@@ -13,7 +13,7 @@ namespace MihirSnake
         public int  foody;
         public int  height;
         public int  width;
-      
+        public Rectangle hitbox;
 
         public Food(int foodx, int foody, int height, int width)
         {
@@ -22,14 +22,20 @@ namespace MihirSnake
             this.height = height;
             this.width = width;
         }
+
         public void Update()
         {
             Random rand = new Random();
+            hitbox.X = foodx;
+            hitbox.Y = foody;
+            hitbox.Width = width;
+            hitbox.Height = height;
         }
 
         public void Draw(Graphics gfx)
         {
             gfx.FillRectangle(Brushes.Black, foodx, foody, height, width);
+            gfx.DrawRectangle(Pens.Red, hitbox);
         }
     }
 }
