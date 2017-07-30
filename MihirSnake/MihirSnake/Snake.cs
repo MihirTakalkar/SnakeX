@@ -4,122 +4,79 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MihirSnake
 {
+    //These are the pieces of your snake!!!!
+    //They should be able to move and have all the cool snake stuff
+    //They should go into a list that snake holds
     class Snake
     {
-        public int squarex;
-        public int squarey;
-        public int height;
-        public int width;
-        public Rectangle hitbox;
-
-        enum Direction
+        List<SnakePiece> dew;
+        public Snake(int x, int y, int width, int height)
         {
-            Stopped,
-            Up,
-            Down,
-            Left,
-            Right
+            dew = new List<SnakePiece>();
+            dew.Add(new SnakePiece(x, y, width, height));
         }
-
- 
-        public Direction direction;
-
-        public Snake(int squarex, int squarey, int height, int width)
+        public void AddSnakePiece()
         {
-           
-            this.squarex = squarex;
-            this.squarey = squarey;
-            this.height = height;
-            this.width = width;
-            direction = Direction.Stopped;
+            //add a new snake to your list dew
+            //it's location is determined by the location and direction of the last piece in the list
+            //what does this mean?
+            //if the last piece in the snakepieces list is moving up, then the new snake piece should spawn under this one
             
+
         }
 
         public void Update()
         {
-            if (direction == Direction.Up)
+            Head().Update();
+            for (int i = dew.Count - 1; i > 0; i--)
             {
-                squarey = squarey - height;
-            }
+                dew[i].Update();
+                
+                dew[i].direction = dew[i - 1].direction;
+                dew[i].squarex = dew[i - 1].squarex;
+                dew[i].squarey = dew[i - 1].squarey;
+                dew[i].hitbox = dew[i - 1].hitbox;
+                
+                
 
-            if (direction == Direction.Down)
-            {
-                squarey = squarey + height;
             }
-
-            if (direction == Direction.Left)
-            {
-                squarex = squarex - width;
-            }
-
-            if (direction == Direction.Right)
-            {
-                squarex = squarex + width;
-            }
-
-            hitbox.X = squarex;
-            hitbox.Y = squarey;
-            hitbox.Width = 20;
-            hitbox.Height = 20;
         }
+
+        public SnakePiece Head()
+        {
+            return dew[0];
+        }
+
         public void Draw(Graphics gfx)
-        {   
-            gfx.FillEllipse(Brushes.Blue, squarex, squarey, height, width);
-            gfx.DrawRectangle(Pens.Red, hitbox);
-        }
-
-        public void SetDirection(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up && direction != Direction.Down)
+            for (int i = 0; i < dew.Count; i++)
             {
-                direction = Direction.Up;
-            }
-            
-            
-            if (e.KeyCode == Keys.Down && direction != Direction.Up)
-            {
-                direction = Direction.Down;
-            }
-
-            if (e.KeyCode == Keys.Left && direction != Direction.Right)
-            {
-                direction = Direction.Left;
-            }
-            if (e.KeyCode == Keys.Right && direction != Direction.Left)
-            {
-                direction = Direction.Right;
+                dew[i].Draw(gfx);
             }
         }
 
-        public bool Offscreen(int screenWidth, int screenHeight)
+        public void Grow()
         {
-            //to check if the snake is off screen
-
-            if (height + squarey > screenHeight)
+            SnakePiece tail = dew[dew.Count - 1];
+            if(tail.direction == SnakePiece.Direction.Up)
             {
-                return true;
+                dew.Add(new SnakePiece(tail.squarex, tail.squarey + tail.width, tail.width, tail.height));
             }
-
-            if (0 > squarey)
+            if(tail.direction == SnakePiece.Direction.Down)
             {
-                return true;
+                dew.Add(new SnakePiece(tail.squarex, tail.squarey - tail.height, tail.width, tail.height));
             }
-            if (squarex + width > screenWidth)
+            if(tail.direction == SnakePiece.Direction.Right)
             {
-                return true;
+                dew.Add(new SnakePiece(tail.squarex - tail.width, tail.squarey, tail.width, tail.height));
             }
-            if(0 > squarex)
+            if (tail.direction == SnakePiece.Direction.Right)
             {
-                return true;
+                dew.Add(new SnakePiece(tail.squarex + tail.width, tail.squarey, tail.width, tail.height));
             }
-            
-
-            return false;
-
         }
 
 
