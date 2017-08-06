@@ -31,7 +31,7 @@ namespace MihirSnake
         }
         public void Respawn(Size clientSize)
         {
-            //generate a random x and y position for the food that is within the bounds of the clientsize
+         
             foodx = rand.Next(0, (clientSize.Width - width) / 20);
             foody = rand.Next(0, (clientSize.Height - height) /20);
             foodx *= 20;
@@ -40,7 +40,6 @@ namespace MihirSnake
         public void Draw(Graphics gfx)
         {
             gfx.FillRectangle(Brushes.Black, foodx, foody, height, width);
-            gfx.DrawRectangle(Pens.Red, hitbox);
         }
     }
 }

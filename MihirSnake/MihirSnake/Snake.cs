@@ -7,78 +7,85 @@ using System.Threading.Tasks;
 
 namespace MihirSnake
 {
-    //These are the pieces of your snake!!!!
-    //They should be able to move and have all the cool snake stuff
-    //They should go into a list that snake holds
     class Snake
     {
-        List<SnakePiece> dew;
+        List<SnakePiece> snake;
         public Snake(int x, int y, int width, int height)
         {
-            dew = new List<SnakePiece>();
-            dew.Add(new SnakePiece(x, y, width, height));
-        }
-        public void AddSnakePiece()
-        {
-            //add a new snake to your list dew
-            //it's location is determined by the location and direction of the last piece in the list
-            //what does this mean?
-            //if the last piece in the snakepieces list is moving up, then the new snake piece should spawn under this one
-            
-
+            snake = new List<SnakePiece>();
+            snake.Add(new SnakePiece(x, y, width, height));
         }
 
         public void Update()
         {
-            Head().Update();
-            for (int i = dew.Count - 1; i > 0; i--)
+            for (int i = snake.Count - 1; i > 0; i--)
             {
-                dew[i].Update();
-                
-                dew[i].direction = dew[i - 1].direction;
-                dew[i].squarex = dew[i - 1].squarex;
-                dew[i].squarey = dew[i - 1].squarey;
-                dew[i].hitbox = dew[i - 1].hitbox;
-                
-                
+                snake[i].Update();
 
+                snake[i].direction = snake[i - 1].direction;
+                snake[i].squarex = snake[i - 1].squarex;
+                snake[i].squarey = snake[i - 1].squarey;
+                snake[i].hitbox = snake[i - 1].hitbox;
             }
+            Head().Update();
         }
 
         public SnakePiece Head()
         {
-            return dew[0];
+            return snake[0];
         }
 
         public void Draw(Graphics gfx)
         {
-            for (int i = 0; i < dew.Count; i++)
+            for (int i = 0; i < snake.Count; i++)
             {
-                dew[i].Draw(gfx);
+                snake[i].Draw(gfx);
             }
         }
 
         public void Grow()
         {
-            SnakePiece tail = dew[dew.Count - 1];
-            if(tail.direction == SnakePiece.Direction.Up)
+            SnakePiece tail = snake[snake.Count - 1];
+            if (tail.direction == SnakePiece.Direction.Up)
             {
-                dew.Add(new SnakePiece(tail.squarex, tail.squarey + tail.width, tail.width, tail.height));
+                snake.Add(new SnakePiece(tail.squarex, tail.squarey + tail.height, tail.width, tail.height));
             }
-            if(tail.direction == SnakePiece.Direction.Down)
+            if (tail.direction == SnakePiece.Direction.Down)
             {
-                dew.Add(new SnakePiece(tail.squarex, tail.squarey - tail.height, tail.width, tail.height));
-            }
-            if(tail.direction == SnakePiece.Direction.Right)
-            {
-                dew.Add(new SnakePiece(tail.squarex - tail.width, tail.squarey, tail.width, tail.height));
+                snake.Add(new SnakePiece(tail.squarex, tail.squarey - tail.height, tail.width, tail.height));
             }
             if (tail.direction == SnakePiece.Direction.Right)
             {
-                dew.Add(new SnakePiece(tail.squarex + tail.width, tail.squarey, tail.width, tail.height));
+                snake.Add(new SnakePiece(tail.squarex - tail.width, tail.squarey, tail.width, tail.height));
+            }
+            if (tail.direction == SnakePiece.Direction.Left)
+            {
+                snake.Add(new SnakePiece(tail.squarex + tail.width, tail.squarey, tail.width, tail.height));
             }
         }
 
+        public bool c9llide()
+        {
+            for (int i = 1; i < snake.Count; i++)
+            {
+                if (Head().hitbox.IntersectsWith(snake[i].hitbox))
+                {
+                    return true;
+
+                }
+            }
+            return false;
+        }
+
+        public void Reset()
+        {
+            SnakePiece head = Head();
+            head.direction = SnakePiece.Direction.Stopped;
+            head.squarex = 100;
+            head.squarey = 100;
+            snake.Clear();
+            snake.Add(head);
+        }
 
     }
 }

@@ -41,3 +41,4 @@ C:\Users\GMRInstructor\Documents\GitHub\MihirNewSnakeX\MihirSnake\MihirSnake\obj
 C:\Users\GMRInstructor\Documents\GitHub\MihirNewSnakeX\MihirSnake\MihirSnake\obj\Debug\MihirSnake.csproj.GenerateResource.Cache
 C:\Users\GMRInstructor\Documents\GitHub\MihirNewSnakeX\MihirSnake\MihirSnake\obj\Debug\MihirSnake.exe
 C:\Users\GMRInstructor\Documents\GitHub\MihirNewSnakeX\MihirSnake\MihirSnake\obj\Debug\MihirSnake.pdb
+C:\Users\GMRInstructor\Documents\GitHub\MihirNewSnakeX\MihirSnake\MihirSnake\obj\Debug\MihirSnake.GameOver.resources

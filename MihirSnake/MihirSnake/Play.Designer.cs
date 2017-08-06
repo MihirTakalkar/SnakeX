@@ -65,15 +65,17 @@
             // SnakeMove
             // 
             this.SnakeMove.Enabled = true;
-            this.SnakeMove.Interval = 250;
+            this.SnakeMove.Interval = 130;
             this.SnakeMove.Tick += new System.EventHandler(this.SnakeMove_Tick);
             // 
             // backgroundImage
             // 
+            this.backgroundImage.BackgroundImage = global::MihirSnake.Properties.Resources.background_desert_design_elements_vector_585961;
             this.backgroundImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundImage.Location = new System.Drawing.Point(0, 0);
             this.backgroundImage.Name = "backgroundImage";
-            this.backgroundImage.Size = new System.Drawing.Size(424, 401);
+            this.backgroundImage.Size = new System.Drawing.Size(624, 601);
+            this.backgroundImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.backgroundImage.TabIndex = 3;
             this.backgroundImage.TabStop = false;
             // 
@@ -84,7 +86,7 @@
             this.pictureBox1.Image = global::MihirSnake.Properties.Resources.junglebackground;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(424, 401);
+            this.pictureBox1.Size = new System.Drawing.Size(624, 601);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -93,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 401);
+            this.ClientSize = new System.Drawing.Size(624, 601);
             this.Controls.Add(this.backgroundImage);
             this.Controls.Add(this.Edition);
             this.Controls.Add(this.Title);
@@ -101,6 +103,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Play";
             this.Text = "Play";
+            this.Load += new System.EventHandler(this.Play_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Play_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.backgroundImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

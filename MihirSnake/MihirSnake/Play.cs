@@ -17,15 +17,21 @@ namespace MihirSnake
         Bitmap bitmap;
         Graphics gfx;
         Food food;
-        Snake dew;
+        Snake snake;
+
         public Play()
         {
             InitializeComponent();
-            dew = new Snake(20, 20, 20, 20);
+            snake = new Snake(20, 20, 20, 20);
             bitmap = new Bitmap(backgroundImage.Width, backgroundImage.Height);
             gfx = Graphics.FromImage(bitmap);
-            food = new Food(random.Next(0, ClientSize.Width - 20), random.Next(0, ClientSize.Height - 20), 20, 20);
+            food = new Food(0, 0, 20, 20);
+            food.Respawn(ClientSize);
             SnakeMove.Enabled = true;
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    snake.Grow();
+            //}
         }
         private void SnakeMove_Tick(object sender, EventArgs e)
         {
@@ -33,27 +39,45 @@ namespace MihirSnake
             gfx.DrawImage(Properties.Resources.background_desert_design_elements_vector_585961, new Rectangle(0, 0, ClientSize.Width, ClientSize.Height));
             //update
             food.Update();
-            dew.Update();
-            if (dew.Head().hitbox.IntersectsWith(food.hitbox))
+            snake.Update();
+            if (snake.Head().hitbox.IntersectsWith(food.hitbox))
             {
                 food.Respawn(ClientSize);
-                dew.Grow();
-                
+                snake.Grow();
+
             }
-            if (dew.Head().Offscreen(ClientSize.Width, ClientSize.Height) == true)
+            if (snake.Head().Offscreen(ClientSize.Width, ClientSize.Height) == true || snake.c9llide() == true)
             {
                 SnakeMove.Stop();
-                MessageBox.Show("You Lose!");
+                MessageBox.Show("You Lose! Foool!");
+                Reset();
             }
             //draw
-            dew.Draw(gfx);
+            snake.Draw(gfx);
             food.Draw(gfx);
 
             backgroundImage.Image = bitmap;
         }
         private void Play_KeyDown(object sender, KeyEventArgs e)
         {
-            dew.Head().SetDirection(e);
+            snake.Head().SetDirection(e);
+        }
+
+        private void Reset()
+        {
+            this.Hide();
+            GameOver form = new GameOver();
+            form.ShowDialog();
+            this.Show();
+
+            snake.Reset();
+            food.Respawn(ClientSize);
+            SnakeMove.Start();
+        }
+
+        private void Play_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

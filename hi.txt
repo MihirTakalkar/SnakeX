@@ -1,0 +1,37 @@
+        public List<Vertex<T>> BFSPath(Vertex<T> start, Vertex<T> goal)
+        {
+            var firstFinder = new Dictionary<Vertex<T>, Vertex<T>>();
+            var toVisit = new Queue<Vertex<T>>();
+            firstFinder.Add(start, null);
+            toVisit.Enqueue(start);
+            do
+            {
+                var visiting = toVisit.Dequeue();
+                if(visiting == goal)
+                {
+                    var path = new List<Vertex<T>>();
+                    var current = goal;
+                    do
+                    {
+                        path.Insert(0, current);
+                        current = firstFinder[current];
+                    } while (current != null);
+                    return path;
+                }
+                foreach(var destination in visiting.Edges.Select(x => x.End).Except(firstFinder.Keys))
+                {
+                    firstFinder.Add(destination, visiting);
+                    toVisit.Enqueue(destination);
+                }
+            } while (toVisit.Count > 0);
+            return new List<Vertex<T>>();
+        }
+
+        public List<Vertex<T>> DFSPath(Vertex<T> start, Vertex<T> goal)
+        {
+            var path = new List<Vertex<T>>();
+
+            
+            return path;
+
+        }

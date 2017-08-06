@@ -67,7 +67,6 @@ namespace MihirSnake
         public void Draw(Graphics gfx)
         {   
             gfx.FillEllipse(Brushes.Blue, squarex, squarey, height, width);
-            gfx.DrawRectangle(Pens.Red, hitbox);
         }
         public void SetDirection(KeyEventArgs e)
         {
