@@ -10,6 +10,11 @@ namespace MihirSnake
     class Snake
     {
         List<SnakePiece> snake;
+        public int Length
+        {
+            get { return snake.Count; }
+        }
+
         public Snake(int x, int y, int width, int height)
         {
             snake = new List<SnakePiece>();

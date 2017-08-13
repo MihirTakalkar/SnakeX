@@ -18,7 +18,8 @@ namespace MihirSnake
         Graphics gfx;
         Food food;
         Snake snake;
-
+        int foodcount = 0;
+        int speed = 0;
         public Play()
         {
             InitializeComponent();
@@ -40,12 +41,20 @@ namespace MihirSnake
             //update
             food.Update();
             snake.Update();
+
             if (snake.Head().hitbox.IntersectsWith(food.hitbox))
             {
                 food.Respawn(ClientSize);
                 snake.Grow();
-
+                foodcount++;
+                if(snake.Length % 5 == 0 && SnakeMove.Interval > 50)
+                {
+                    SnakeMove.Interval -= 10;
+                    speed++;
+                }
             }
+            label2.Text = $"Food Eaten: {foodcount}";
+            label3.Text = $"Speed:{speed}";
             if (snake.Head().Offscreen(ClientSize.Width, ClientSize.Height) == true || snake.c9llide() == true)
             {
                 SnakeMove.Stop();
@@ -53,8 +62,12 @@ namespace MihirSnake
                 Reset();
             }
             //draw
+            gfx.DrawString("SnakeX", label1.Font, Brushes.Red, label1.Location);
             snake.Draw(gfx);
             food.Draw(gfx);
+           
+
+            //SnakeMove.Interval = 100;
 
             backgroundImage.Image = bitmap;
         }
@@ -72,6 +85,7 @@ namespace MihirSnake
 
             snake.Reset();
             food.Respawn(ClientSize);
+            SnakeMove.Interval = 130;
             SnakeMove.Start();
         }
 
@@ -79,5 +93,6 @@ namespace MihirSnake
         {
 
         }
+
     }
 }

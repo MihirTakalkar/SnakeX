@@ -116,6 +116,7 @@
   <ItemGroup>
     <None Include="Resources\game-over-pixels.png" />
     <None Include="Resources\download %283%29.jpg" />
+    <None Include="Resources\game-over_screen_example.png" />
     <Content Include="Resources\giphy.gif" />
     <None Include="Resources\giphy1.gif" />
   </ItemGroup>

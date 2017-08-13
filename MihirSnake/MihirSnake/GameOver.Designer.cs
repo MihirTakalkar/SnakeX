@@ -38,9 +38,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Black;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Adobe Gothic Std B", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.ForeColor = System.Drawing.Color.Gold;
+            this.label1.ForeColor = System.Drawing.Color.Cyan;
             this.label1.Location = new System.Drawing.Point(33, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(381, 121);
@@ -65,7 +65,7 @@
             this.button2.BackColor = System.Drawing.Color.Red;
             this.button2.Font = new System.Drawing.Font("Pericles", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button2.Location = new System.Drawing.Point(195, 252);
+            this.button2.Location = new System.Drawing.Point(196, 252);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(219, 50);
             this.button2.TabIndex = 8;
@@ -75,7 +75,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::MihirSnake.Properties.Resources.download__3_;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::MihirSnake.Properties.Resources.game_over_screen_example;
             this.pictureBox1.Location = new System.Drawing.Point(29, 178);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(148, 124);
@@ -93,6 +94,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GameOver";
             this.Text = "GameOver";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
